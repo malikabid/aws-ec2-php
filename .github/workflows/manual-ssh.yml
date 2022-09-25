@@ -33,6 +33,6 @@ jobs:
         run: ssh staging 'whoami'
 
       - name: Pull files from repo
-        run: ssh staging 'cd /usr/share/nginx/html/ && git checkout origin/main && git pull'
+        run: ssh staging 'cd /usr/share/nginx/html/ && git checkout main && git pull'
 
 
