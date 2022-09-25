@@ -1,7 +1,7 @@
 <?php
 
-echo "this is file deployed using Actions";
-echo "trying again...";
-echo "trying again...";
-echo "new host name added";
-echo "new permissions";
+echo "this is file deployed using Actions<br/>";
+echo "trying again...<br/>";
+echo "trying again...<br/>";
+echo "new host name added<br/>";
+echo "new permissions<br/>";
