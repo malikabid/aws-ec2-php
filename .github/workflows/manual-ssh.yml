@@ -1,6 +1,11 @@
 name: SSH without Actions
 
-on: [push, workflow_dispatch]
+# on: [push, workflow_dispatch]
+on:
+  push:
+    branches: [ "main" ]
+
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -27,7 +32,7 @@ jobs:
       - name: Check the current User
         run: ssh staging 'whoami'
 
-      - name: List files in webroot
-        run: ssh staging 'cd /usr/share/nginx/html/ && ls -l'
+      - name: Pull files from repo
+        run: ssh staging 'cd /usr/share/nginx/html/ && git checkout origin/main && git pull'
 
 
