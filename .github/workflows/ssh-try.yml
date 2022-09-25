@@ -5,16 +5,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      SSH_PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY }}
-      REMOTE_HOST: ${{ secrets.HOSTNAME  }}
-      REMOTE_USER: ${{ secrets.USER_NAME  }}
     steps:
       - name: Checkout the code
         uses: actions/checkout@v3
-      - name: Deploy to my EC2 instance
-        run: |
-          echo "$SSH_PRIVATE_KEY" > private_key && chmod 600 private_key
-          ssh -o StrictHostKeyChecking=no -i private_key ${REMOTE_USER}@${REMOTE_HOST}
-          sh -c "whoami"
+      - name: Run Commands on SSH AWS EC2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOSTNAME }}
+          username: ${{ secrets.USER_NAME }}
+          key: ${{ secrets.AWS_PRIVATE_KEY }}
+          script: |
+            whoami
+            ls -al
           
