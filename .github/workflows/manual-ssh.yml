@@ -24,10 +24,10 @@ jobs:
           SSH_KEY: ${{ secrets.AWS_PRIVATE_KEY }}
           SSH_HOST: ${{ secrets.HOSTNAME }}
     
-    - name: Check the current User
-      run: ssh staging 'whoami'
+      - name: Check the current User
+        run: ssh staging 'whoami'
 
-    - name: List files in webroot
-      run: ssh staging 'cd /usr/share/nginx/html/ && ls -l'
+      - name: List files in webroot
+        run: ssh staging 'cd /usr/share/nginx/html/ && ls -l'
 
 
