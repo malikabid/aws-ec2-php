@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
+    with:
       SSH_PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY }}
       REMOTE_HOST: ${{ secrets.HOSTNAME  }}
       REMOTE_USER: ${{ secrets.USER_NAME  }}
