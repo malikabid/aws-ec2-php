@@ -1,0 +1,20 @@
+name: Try SSH Commands on AWS EC2
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      SSH_PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY }}
+      REMOTE_HOST: ${{ secrets.HOSTNAME  }}
+      REMOTE_USER: ${{ secrets.USER_NAME  }}
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v3
+      - name: Deploy to my EC2 instance
+        run: |
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME}
+          whoami
+          
