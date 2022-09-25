@@ -1,0 +1,33 @@
+name: SSH without Actions
+
+on: [push, workflow_dispatch]
+
+jobs:
+  deploy:
+    name: Deploy to AWS EC2
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/ssh/
+          echo "$SSH_KEY" > ~/.ssh/staging.key
+          chmod 600 ~/.ssh/staging.key
+          cat >>~/.ssh/config <<END
+          Host staging
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/staging.key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_USER: ${{ secrets.USER_NAME }}
+          SSH_KEY: ${{ secrets.AWS_PRIVATE_KEY }}
+          SSH_HOST: ${{ secrets.HOSTNAME }}
+    
+    - name: Check the current User
+      run: ssh staging 'whoami'
+
+    - name: List files in webroot
+      run: ssh staging 'cd /usr/share/nginx/html/ && ls -l'
+
+

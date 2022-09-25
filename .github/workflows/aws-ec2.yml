@@ -1,24 +1,24 @@
-name: Deploy PHP on AWS EC2
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-    types: closed
-  workflow_dispatch:
+# name: Deploy PHP on AWS EC2
+# on:
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
+#     branches: [ "main" ]
+#     types: closed
+#   workflow_dispatch:
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    env:
-      SSH_PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY }}
-      REMOTE_HOST: ${{ secrets.HOSTNAME  }}
-      REMOTE_USER: ${{ secrets.USER_NAME  }}
-    steps:
-      - name: Checkout the code
-        uses: actions/checkout@v3
-      - name: Deploy to my EC2 instance
-        uses: easingthemes/ssh-deploy@v2.1.5
-        env:
-          SOURCE: "./"
-          TARGET: /usr/share/nginx/html/
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     env:
+#       SSH_PRIVATE_KEY: ${{ secrets.AWS_PRIVATE_KEY }}
+#       REMOTE_HOST: ${{ secrets.HOSTNAME  }}
+#       REMOTE_USER: ${{ secrets.USER_NAME  }}
+#     steps:
+#       - name: Checkout the code
+#         uses: actions/checkout@v3
+#       - name: Deploy to my EC2 instance
+#         uses: easingthemes/ssh-deploy@v2.1.5
+#         env:
+#           SOURCE: "./"
+#           TARGET: /usr/share/nginx/html/
