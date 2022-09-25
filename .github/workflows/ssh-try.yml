@@ -16,5 +16,5 @@ jobs:
           key: ${{ secrets.AWS_PRIVATE_KEY }}
           script: |
             whoami
-            pwd
+            cd /usr/share/nginx/html && ls -l
           
