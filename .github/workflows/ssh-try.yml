@@ -15,6 +15,6 @@ jobs:
           username: ${{ secrets.USER_NAME }}
           key: ${{ secrets.AWS_PRIVATE_KEY }}
           script: |
-            whoami
-            cd /usr/share/nginx/html && ls -l
+            cd /usr/share/nginx/html
+            echo "this is new file created by actions" > newfile.txt
           
