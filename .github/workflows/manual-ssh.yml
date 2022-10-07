@@ -32,7 +32,7 @@ jobs:
       - name: Run SSH Commands
         uses: malikabid/manualssh@main
         with:
-          script: whoami
+          script: ssh staging 'whoami'
 
       # - name: Check the current User
       #   run: ssh staging 'whoami'
