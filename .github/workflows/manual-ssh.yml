@@ -29,10 +29,15 @@ jobs:
           SSH_KEY: ${{ secrets.AWS_PRIVATE_KEY }}
           SSH_HOST: ${{ secrets.HOSTNAME }}
     
-      - name: Check the current User
-        run: ssh staging 'whoami'
+      - name: Run SSH Commands
+        uses: malikabid/manualssh@main
+        with:
+          script: whoami
 
-      - name: Pull files from repo
-        run: ssh staging 'cd /usr/share/nginx/html/ && git checkout main && git pull'
+      # - name: Check the current User
+      #   run: ssh staging 'whoami'
+
+      # - name: Pull files from repo
+      #   run: ssh staging 'cd /usr/share/nginx/html/ && git checkout main && git pull'
 
 
