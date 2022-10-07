@@ -11,6 +11,12 @@ jobs:
   deploy:
     name: Deploy to AWS EC2
     runs-on: ubuntu-latest
+
+    env:
+          SSH_USER: ${{ secrets.USER_NAME }}
+          SSH_KEY: ${{ secrets.AWS_PRIVATE_KEY }}
+          SSH_HOST: ${{ secrets.HOSTNAME }}
+
     steps:
       - name: Configure SSH
         run: |
@@ -24,10 +30,6 @@ jobs:
             IdentityFile ~/.ssh/staging.key
             StrictHostKeyChecking no
           END
-        env:
-          SSH_USER: ${{ secrets.USER_NAME }}
-          SSH_KEY: ${{ secrets.AWS_PRIVATE_KEY }}
-          SSH_HOST: ${{ secrets.HOSTNAME }}
     
       - name: Run SSH Commands
         uses: malikabid/manualssh@main
@@ -35,7 +37,7 @@ jobs:
           host: $SSH_HOST
           username: $SSH_USER
           key: $SSH_KEY
-          script: 'whoami'
+          script: 'cd /usr/share/nginx/html/ && git checkout main && git pull'
 
       - name: Check the current User
         run: ssh staging 'whoami'
