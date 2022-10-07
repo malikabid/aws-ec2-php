@@ -37,8 +37,8 @@ jobs:
           key: $SSH_KEY
           script: 'whoami'
 
-      # - name: Check the current User
-      #   run: ssh staging 'whoami'
+      - name: Check the current User
+        run: ssh staging 'whoami'
 
       # - name: Pull files from repo
       #   run: ssh staging 'cd /usr/share/nginx/html/ && git checkout main && git pull'
