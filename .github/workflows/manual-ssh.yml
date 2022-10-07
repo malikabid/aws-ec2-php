@@ -18,18 +18,18 @@ jobs:
           SSH_HOST: ${{ secrets.HOSTNAME }}
 
     steps:
-      - name: Configure SSH
-        run: |
-          mkdir -p ~/.ssh/
-          echo "$SSH_KEY" > ~/.ssh/staging.key
-          chmod 600 ~/.ssh/staging.key
-          cat >>~/.ssh/config <<END
-          Host staging
-            HostName $SSH_HOST
-            User $SSH_USER
-            IdentityFile ~/.ssh/staging.key
-            StrictHostKeyChecking no
-          END
+      # - name: Configure SSH
+      #   run: |
+      #     mkdir -p ~/.ssh/
+      #     echo "$SSH_KEY" > ~/.ssh/staging.key
+      #     chmod 600 ~/.ssh/staging.key
+      #     cat >>~/.ssh/config <<END
+      #     Host staging
+      #       HostName $SSH_HOST
+      #       User $SSH_USER
+      #       IdentityFile ~/.ssh/staging.key
+      #       StrictHostKeyChecking no
+      #     END
     
       - name: Run SSH Commands
         uses: malikabid/manualssh@main
@@ -39,8 +39,8 @@ jobs:
           key: $SSH_KEY
           script: 'cd /usr/share/nginx/html/ && git checkout main && git pull'
 
-      - name: Check the current User
-        run: ssh staging 'whoami'
+      # - name: Check the current User
+      #   run: ssh staging 'whoami'
 
       # - name: Pull files from repo
       #   run: ssh staging 'cd /usr/share/nginx/html/ && git checkout main && git pull'
