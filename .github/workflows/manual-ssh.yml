@@ -37,7 +37,9 @@ jobs:
           host: $SSH_HOST
           username: $SSH_USER
           key: $SSH_KEY
-          script: 'cd /usr/share/nginx/html/ && git checkout main && git pull'
+          script: |
+           cd /usr/share/nginx/html/ 
+           git checkout main && git pull
 
       # - name: Check the current User
       #   run: ssh staging 'whoami'
