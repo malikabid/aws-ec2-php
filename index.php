@@ -10,3 +10,5 @@ echo "trying again...<br/>";
 echo "trying again...<br/>";
 echo "new host name added<br/>";
 echo "new permissions<br/>";
+echo "<hr/>";
+echo "trying custom actions"
