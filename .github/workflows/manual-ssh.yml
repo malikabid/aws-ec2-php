@@ -12,10 +12,10 @@ jobs:
     name: Deploy to AWS EC2
     runs-on: ubuntu-latest
 
-    env:
-          SSH_USER: ${{ secrets.USER_NAME }}
-          SSH_KEY: ${{ secrets.AWS_PRIVATE_KEY }}
-          SSH_HOST: ${{ secrets.HOSTNAME }}
+    # env:
+    #       SSH_USER: ${{ secrets.USER_NAME }}
+    #       SSH_KEY: ${{ secrets.AWS_PRIVATE_KEY }}
+    #       SSH_HOST: ${{ secrets.HOSTNAME }}
 
     steps:
       # - name: Configure SSH
@@ -34,9 +34,9 @@ jobs:
       - name: Run SSH Commands
         uses: malikabid/manualssh@main
         with:
-          host: $SSH_HOST
-          username: $SSH_USER
-          key: $SSH_KEY
+          host: ${{ secrets.HOSTNAME }}
+          username: ${{ secrets.USER_NAME }}
+          key: ${{ secrets.AWS_PRIVATE_KEY }}
           script: |
            cd /usr/share/nginx/html/ 
            git checkout main && git pull
