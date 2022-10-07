@@ -32,7 +32,10 @@ jobs:
       - name: Run SSH Commands
         uses: malikabid/manualssh@main
         with:
-          script: ssh staging 'whoami'
+          host: $SSH_HOST
+          username: $SSH_USER
+          key: $SSH_KEY
+          script: 'whoami'
 
       # - name: Check the current User
       #   run: ssh staging 'whoami'
