@@ -20,6 +20,10 @@ echo "Please fill in the below details to get connected";
             <td><input type="email" name="email" id="email" /></td>
         </tr>
         <tr>
+            <td><label for="email2">Enter your Email2</label>:</td>
+            <td><input type="email" name="email2" id="email2" /></td>
+        </tr>
+        <tr>
             <td colspan="2">
                 <input type="submit" value="Submit" />
             </td>
